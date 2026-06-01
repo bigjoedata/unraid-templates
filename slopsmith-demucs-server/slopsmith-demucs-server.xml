@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Slopsmith Demucs Server</Name>
+  <Repository>ghcr.io/slopsmith/slopsmith-demucs-server:latest</Repository>
+  <Registry>https://ghcr.io/slopsmith/slopsmith-demucs-server</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/slopsmith/slopsmith-demucs-server/issues</Support>
+  <Project>https://github.com/slopsmith/slopsmith-demucs-server</Project>
+  <Overview>
+    A standalone GPU-accelerated companion server for Slopsmith. Offloads PyTorch/Demucs stem-splitting and Whisper lyrics alignment tasks to a separate CUDA-capable GPU.
+    
+    IMPORTANT GPU PASSTHROUGH INSTRUCTIONS:
+    To enable GPU acceleration, you must have the Unraid NVIDIA Driver plugin installed. Under Docker Advanced View, add the following to your Extra Parameters:
+    --gpus all
+  </Overview>
+  <Category>MediaApp:Music;MediaServer:Music;</Category>
+  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <Icon>https://raw.githubusercontent.com/byrongamatos/slopsmith/main/docs/player.png</Icon>
+  <Description>
+    A standalone GPU-accelerated companion server for Slopsmith. Offloads PyTorch/Demucs stem-splitting and Whisper lyrics alignment tasks to a separate CUDA-capable GPU.
+  </Description>
+  
+  <!-- Network Ports -->
+  <!-- We map the default Host Port to 8020 to prevent port conflict with the main Slopsmith container -->
+  <Config Name="API Port" Target="8000" Default="8020" Mode="tcp" Description="The port for the Demucs Server REST API (defaulted to 8020)" Type="Port" Display="always" Required="true" Mask="false">8020</Config>
+
+  <!-- Required System Variables -->
+  <Config Name="PORT Env" Target="PORT" Default="8000" Mode="" Description="Internal port the Demucs server listens to inside the container" Type="Variable" Display="advanced" Required="true" Mask="false">8000</Config>
+</Container>
