@@ -16,7 +16,7 @@
   </Overview>
   <Category>MediaApp:Music;MediaServer:Music;</Category>
   <WebUI>http://[IP]:[PORT:8000]</WebUI>
-  <Icon>https://raw.githubusercontent.com/byrongamatos/slopsmith/main/docs/player.png</Icon>
+  <Icon>https://raw.githubusercontent.com/slopsmith/unraid-templates/main/slopsmith-demucs-server/icon.png</Icon>
   <Description>
     A standalone GPU-accelerated companion server for Slopsmith. Offloads PyTorch/Demucs stem-splitting and Whisper lyrics alignment tasks to a separate CUDA-capable GPU.
   </Description>
