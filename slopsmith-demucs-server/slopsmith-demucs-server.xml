@@ -25,6 +25,10 @@
   <!-- We map the default Host Port to 8020 to prevent port conflict with the main Slopsmith container -->
   <Config Name="API Port" Target="8000" Default="8020" Mode="tcp" Description="The port for the Demucs Server REST API (defaulted to 8020)" Type="Port" Display="always" Required="true" Mask="false">8020</Config>
 
+  <!-- Paths -->
+  <Config Name="Appdata Directory" Target="/config" Default="/mnt/user/appdata/slopsmith-demucs-server" Mode="rw" Description="Location for config DB, caches (art, audio, sloppak), and persistent pip packages." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/slopsmith-demucs-server</Config>
+
   <!-- Required System Variables -->
   <Config Name="PORT Env" Target="PORT" Default="8000" Mode="" Description="Internal port the Demucs server listens to inside the container" Type="Variable" Display="advanced" Required="true" Mask="false">8000</Config>
+  <Config Name="CONFIG_DIR Env" Target="CONFIG_DIR" Default="/config" Mode="" Description="Internal application environment variable for appdata config" Type="Variable" Display="advanced" Required="true" Mask="false">/config</Config>
 </Container>
