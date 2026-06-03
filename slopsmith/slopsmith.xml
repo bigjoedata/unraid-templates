@@ -14,7 +14,7 @@
   </Overview>
   <Category>MediaApp:Music;MediaServer:Music;</Category>
   <WebUI>http://[IP]:[PORT:8000]</WebUI>
-  <Icon>https://raw.githubusercontent.com/slopsmith/unraid-templates/main/slopsmith/icon.png</Icon>
+  <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/slopsmith/icon.png</Icon>
   <Description>
     A self-contained web application for browsing, playing, and practicing Rocksmith 2014 Custom DLC (CDLC). Runs entirely in Docker — no local dependencies required.
   </Description>
