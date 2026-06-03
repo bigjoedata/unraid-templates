@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>Slopsmith Demucs Server</Name>
-  <Repository>ghcr.io/slopsmith/slopsmith-demucs-server:latest</Repository>
-  <Registry>https://ghcr.io/slopsmith/slopsmith-demucs-server</Registry>
+  <Repository>ghcr.io/bigjoedata/slopsmith-demucs-server:latest</Repository>
+  <Registry>https://ghcr.io/bigjoedata/slopsmith-demucs-server</Registry>
   <Network>bridge</Network>
   <Privileged>false</Privileged>
   <Support>https://github.com/slopsmith/slopsmith-demucs-server/issues</Support>
