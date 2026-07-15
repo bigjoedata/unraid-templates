@@ -7,7 +7,9 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/got-feedback/feedback/issues</Support>
   <Project>https://github.com/got-feedback/feedback</Project>
-  <Overview>feedBack is an open-source rhythm gaming and music education platform. Supports multi-instrument gameplay, chart creation tools, music theory training, lessons, minigames, and a powerful plugin ecosystem. DISCLAIMER: This is an unofficial, community-provided Docker template. The application is actively developed, and major changes may occur.</Overview>
+  <Overview>feedBack is an open-source rhythm gaming and music education platform. Supports multi-instrument gameplay, chart creation tools, music theory training, lessons, minigames, and a powerful plugin ecosystem.
+  
+  DISCLAIMER: This is an unofficial, community-provided Docker template. The application is actively developed, and major changes may occur.</Overview>
   <Category>MediaApp:Music;MediaServer:Music;</Category>
   <WebUI>http://[IP]:[PORT:8000]</WebUI>
   <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/feedback/icon.png</Icon>
@@ -17,7 +19,7 @@
   <Config Name="WebUI Port" Target="8000" Default="7000" Mode="tcp" Description="The port for feedBack Web UI (defaulted to 7000 to avoid browser blocked-port list)" Type="Port" Display="always" Required="true" Mask="false">7000</Config>
 
   <!-- Paths -->
-  <Config Name="Song Library Directory" Target="/feedpaks" Default="/mnt/user/Media/Music/feedBack" Mode="rw" Description="Where your feedPak chart library is stored (Read-Write required for seeding starter/diagnostic content and folder organization)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/Media/Music/feedBack</Config>
+  <Config Name="Song Library Directory" Target="/feedpaks" Default="/mnt/user/Media/feedpaks/" Mode="rw" Description="Where your feedPak chart library is stored (Read-Write required for seeding starter/diagnostic content and folder organization)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/Media/feedpaks/</Config>
   <Config Name="Appdata Directory" Target="/config" Default="/mnt/user/appdata/feedback" Mode="rw" Description="Location for config DB, caches (art, audio, feedpaks), and persistent packages." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/feedback</Config>
 
   <!-- Persistent Plugins Configuration -->
