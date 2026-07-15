@@ -8,11 +8,11 @@
   <ExtraParams>--user 0:0</ExtraParams>
   <Support>https://github.com/got-feedback/feedback-demucs-server/issues</Support>
   <Project>https://github.com/got-feedback/feedback-demucs-server</Project>
-  <Overview>A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU. IMPORTANT GPU PASSTHROUGH INSTRUCTIONS: To enable GPU acceleration, you must have the Unraid NVIDIA Driver plugin installed. Under Docker Advanced View, add the following to your Extra Parameters: --gpus all</Overview>
+  <Overview>A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU. IMPORTANT: On first launch, this container will download several large AI model weights (Roformer, Whisper, Crepe), which requires 9GB+ of disk space and can take several minutes depending on your internet speed. Please be patient. GPU PASSTHROUGH: To enable GPU acceleration, you must have the Unraid NVIDIA Driver plugin installed and add --gpus all to your Extra Parameters.</Overview>
   <Category>MediaApp:Music;MediaServer:Music;</Category>
   <WebUI>http://[IP]:[PORT:7865]</WebUI>
   <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/feedback-demucs-server/icon.png</Icon>
-  <Description>A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU.</Description>
+  <Description>A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU. NOTE: Requires 9GB+ of disk space for download of model weights on first start.</Description>
   
   <!-- Network Ports -->
   <Config Name="API Port" Target="7865" Default="8020" Mode="tcp" Description="The port for the Demucs Server REST API (defaulted to 8020)" Type="Port" Display="always" Required="true" Mask="false">8020</Config>
@@ -20,7 +20,24 @@
   <!-- Paths -->
   <Config Name="Cache Directory" Target="/app/cache" Default="/mnt/user/appdata/feedback-demucs-server" Mode="rw" Description="Location for downloaded model weights (Demucs, Whisper, Crepe) and transient audio caches." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/feedback-demucs-server</Config>
 
+  <!-- Demucs & PyTorch Settings -->
+  <Config Name="Demucs Model" Target="SLOPSMITH_DEMUCS_MODEL" Default="htdemucs_ft" Mode="" Description="The default Demucs separation model (e.g., htdemucs_ft, htdemucs, htdemucs_6s)." Type="Variable" Display="always" Required="false" Mask="false">htdemucs_ft</Config>
+  <Config Name="Device" Target="SLOPSMITH_DEMUCS_DEVICE" Default="" Mode="" Description="Optional: The device PyTorch should use (e.g., cuda, cpu). Leave blank to auto-detect Nvidia GPU." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="API Key" Target="SLOPSMITH_API_KEY" Default="" Mode="" Description="Optional: API authentication key to secure the Demucs server endpoints." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Cache TTL" Target="CACHE_TTL" Default="24h" Mode="" Description="Maximum age of transient audio/stems cache folders before deletion (e.g., 1h, 12h, 24h, or NEVER to disable auto-cleanup)." Type="Variable" Display="always" Required="false" Mask="false">24h</Config>
+  <Config Name="Skip Warmup" Target="SKIP_WARMUP" Default="false" Mode="" Description="Set to true to skip downloading AI model weights on container startup. (Weights will instead download on-demand on the first request)." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <!-- Cache Subdirectory Customization -->
+  <Config Name="Cache Directory Env" Target="SLOPSMITH_DEMUCS_CACHE" Default="/app/cache" Mode="" Description="Internal application cache root directory." Type="Variable" Display="advanced" Required="true" Mask="false">/app/cache</Config>
+  <Config Name="HuggingFace Cache Location" Target="HF_HOME" Default="/app/cache/huggingface" Mode="" Description="Redirects HuggingFace models to the persistent cache directory." Type="Variable" Display="advanced" Required="true" Mask="false">/app/cache/huggingface</Config>
+  <Config Name="PyTorch Cache Location" Target="TORCH_HOME" Default="/app/cache/torch" Mode="" Description="Redirects PyTorch models to the persistent cache directory." Type="Variable" Display="advanced" Required="true" Mask="false">/app/cache/torch</Config>
+  <Config Name="HuggingFace Hub Cache Location" Target="HUGGINGFACE_HUB_CACHE" Default="/app/cache/huggingface/hub" Mode="" Description="Redirects HuggingFace hub downloads to the persistent cache directory." Type="Variable" Display="advanced" Required="true" Mask="false">/app/cache/huggingface/hub</Config>
+
+  <!-- Auto-Update Configuration -->
+  <Config Name="Auto Update" Target="AUTO_UPDATE" Default="false" Mode="" Description="Enables auto-updates of server files at the configured update time (Requires .git mount)." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Update Time" Target="UPDATE_TIME" Default="04:00" Mode="" Description="Daily time check for updates (HH:MM format)." Type="Variable" Display="advanced" Required="false" Mask="false">04:00</Config>
+  <Config Name="Update Check Interval" Target="UPDATE_CHECK_INTERVAL" Default="3600" Mode="" Description="Seconds between daily time check sweeps." Type="Variable" Display="advanced" Required="false" Mask="false">3600</Config>
+
   <!-- Required System Variables -->
-  <Config Name="PORT Env" Target="PORT" Default="7865" Mode="" Description="Internal port the Demucs server listens to inside the container" Type="Variable" Display="advanced" Required="true" Mask="false">7865</Config>
-  <Config Name="SLOPSMITH_DEMUCS_CACHE Env" Target="SLOPSMITH_DEMUCS_CACHE" Default="/app/cache" Mode="" Description="Internal cache directory path (backward compatibility with upstream)" Type="Variable" Display="advanced" Required="true" Mask="false">/app/cache</Config>
+  <Config Name="PORT Env" Target="PORT" Default="7865" Mode="" Description="Internal port the Demucs server listens to inside the container." Type="Variable" Display="advanced" Required="true" Mask="false">7865</Config>
 </Container>
