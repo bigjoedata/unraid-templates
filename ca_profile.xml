@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Maintainer>
-  <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/slopsmith/icon.png</Icon>
-  <Profile>Providing high-quality Unraid Docker templates for the Slopsmith interactive music notation player and companion GPU acceleration services.</Profile>
-  <DonateLink>https://ko-fi.com/slopsmith</DonateLink>
-  <DonateText>Support the official Slopsmith project on Ko-fi!</DonateText>
+  <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/feedback/icon.png</Icon>
+  <Profile>Providing high-quality Unraid Docker templates for the feedBack rhythm gaming and music education platform and companion GPU acceleration services.</Profile>
+  <DonateLink>https://patreon.com/got_feedback</DonateLink>
+  <DonateText>Support the official feedBack project on Patreon!</DonateText>
 </Maintainer>

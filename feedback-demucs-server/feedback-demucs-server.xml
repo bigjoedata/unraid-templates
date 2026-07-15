@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>feedBack Demucs Server</Name>
+  <Repository>ghcr.io/got-feedback/feedback-demucs-server:latest</Repository>
+  <Registry>https://ghcr.io/got-feedback/feedback-demucs-server</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/got-feedback/feedback-demucs-server/issues</Support>
+  <Project>https://github.com/got-feedback/feedback-demucs-server</Project>
+  <Overview>
+    A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU.
+    
+    IMPORTANT GPU PASSTHROUGH INSTRUCTIONS:
+    To enable GPU acceleration, you must have the Unraid NVIDIA Driver plugin installed. Under Docker Advanced View, add the following to your Extra Parameters:
+    --gpus all
+  </Overview>
+  <Category>MediaApp:Music;MediaServer:Music;</Category>
+  <WebUI>http://[IP]:[PORT:7865]</WebUI>
+  <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/feedback-demucs-server/icon.png</Icon>
+  <Description>
+    A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU.
+  </Description>
+  
+  <!-- Network Ports -->
+  <Config Name="API Port" Target="7865" Default="8020" Mode="tcp" Description="The port for the Demucs Server REST API (defaulted to 8020)" Type="Port" Display="always" Required="true" Mask="false">8020</Config>
+
+  <!-- Paths -->
+  <Config Name="Cache Directory" Target="/app/cache" Default="/mnt/user/appdata/feedback-demucs-server" Mode="rw" Description="Location for downloaded model weights (Demucs, Whisper, Crepe) and transient audio caches." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/feedback-demucs-server</Config>
+
+  <!-- Required System Variables -->
+  <Config Name="PORT Env" Target="PORT" Default="7865" Mode="" Description="Internal port the Demucs server listens to inside the container" Type="Variable" Display="advanced" Required="true" Mask="false">7865</Config>
+  <Config Name="SLOPSMITH_DEMUCS_CACHE Env" Target="SLOPSMITH_DEMUCS_CACHE" Default="/app/cache" Mode="" Description="Internal cache directory path (backward compatibility with upstream)" Type="Variable" Display="advanced" Required="true" Mask="false">/app/cache</Config>
+</Container>

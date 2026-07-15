@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>feedBack</Name>
+  <Repository>ghcr.io/got-feedback/feedback:nightly</Repository>
+  <Registry>https://ghcr.io/got-feedback/feedback</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/got-feedback/feedback/issues</Support>
+  <Project>https://github.com/got-feedback/feedback</Project>
+  <Overview>feedBack is an open-source rhythm gaming and music education platform. Supports multi-instrument gameplay, chart creation tools, music theory training, lessons, minigames, and a powerful plugin ecosystem. DISCLAIMER: This is an unofficial, community-provided Docker template. The application is actively developed, and major changes may occur.</Overview>
+  <Category>MediaApp:Music;MediaServer:Music;</Category>
+  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/feedback/icon.png</Icon>
+  <Description>feedBack is an open-source rhythm gaming and music education platform. Supports multi-instrument gameplay, chart creation tools, music theory training, lessons, minigames, and a powerful plugin ecosystem.</Description>
+  
+  <!-- Network Ports -->
+  <Config Name="WebUI Port" Target="8000" Default="7000" Mode="tcp" Description="The port for feedBack Web UI (defaulted to 7000 to avoid browser blocked-port list)" Type="Port" Display="always" Required="true" Mask="false">7000</Config>
+
+  <!-- Paths -->
+  <Config Name="Song Library Directory" Target="/feedpaks" Default="/mnt/user/Media/Music/feedBack" Mode="ro" Description="Where your feedPak chart library is stored (Read-only recommended)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/Media/Music/feedBack</Config>
+  <Config Name="Appdata Directory" Target="/config" Default="/mnt/user/appdata/feedback" Mode="rw" Description="Location for config DB, caches (art, audio, feedpaks), and persistent packages." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/feedback</Config>
+
+  <!-- Persistent Plugins Configuration -->
+  <Config Name="Plugins Directory" Target="FEEDBACK_PLUGINS_DIR" Default="/config/plugins" Mode="" Description="Optional: Set the path to scan for user-installed custom plugins. Defaults to /config/plugins. You can place custom plugins directly into the plugins/ subfolder of your appdata share on the host." Type="Variable" Display="always" Required="false" Mask="false">/config/plugins</Config>
+  <Config Name="Auto Install Plugins" Target="FEEDBACK_AUTO_INSTALL_PLUGINS" Default="" Mode="" Description="Optional: Comma-separated list of GitHub repositories (e.g., got-feedback/feedBack-plugin-rig-builder,got-feedback/feedBack-plugin-practice) to automatically download and install at startup." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+
+  <!-- Performance & Scaling Options -->
+  <Config Name="Scan Max Workers" Target="SCAN_MAX_WORKERS" Default="" Mode="" Description="Optional: Restricts the maximum number of concurrent files being scanned at startup. Useful to cap CPU usage during library sync on lower-end servers." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <!-- Logging Configuration -->
+  <Config Name="Log Level" Target="LOG_LEVEL" Default="INFO" Mode="" Description="Uvicorn / feedBack logging level (DEBUG | INFO | WARNING | ERROR)." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
+  <Config Name="Log Format" Target="LOG_FORMAT" Default="text" Mode="" Description="Log formatting style (text | json)." Type="Variable" Display="advanced" Required="false" Mask="false">text</Config>
+  <Config Name="Log File Location" Target="LOG_FILE" Default="/config/feedback.log" Mode="" Description="Optional: Persistent log file location to write logging output directly to your appdata directory for easier troubleshooting." Type="Variable" Display="advanced" Required="false" Mask="false">/config/feedback.log</Config>
+
+  <!-- Required System Variables -->
+  <Config Name="DLC_DIR Env" Target="DLC_DIR" Default="/feedpaks" Mode="" Description="Internal application environment variable for song/chart library directory" Type="Variable" Display="advanced" Required="true" Mask="false">/feedpaks</Config>
+  <Config Name="CONFIG_DIR Env" Target="CONFIG_DIR" Default="/config" Mode="" Description="Internal application environment variable for appdata config" Type="Variable" Display="advanced" Required="true" Mask="false">/config</Config>
+</Container>
