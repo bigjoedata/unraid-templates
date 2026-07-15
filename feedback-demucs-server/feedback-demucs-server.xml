@@ -5,21 +5,14 @@
   <Registry>https://ghcr.io/got-feedback/feedback-demucs-server</Registry>
   <Network>bridge</Network>
   <Privileged>false</Privileged>
+  <ExtraParams>--user 0:0</ExtraParams>
   <Support>https://github.com/got-feedback/feedback-demucs-server/issues</Support>
   <Project>https://github.com/got-feedback/feedback-demucs-server</Project>
-  <Overview>
-    A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU.
-    
-    IMPORTANT GPU PASSTHROUGH INSTRUCTIONS:
-    To enable GPU acceleration, you must have the Unraid NVIDIA Driver plugin installed. Under Docker Advanced View, add the following to your Extra Parameters:
-    --gpus all
-  </Overview>
+  <Overview>A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU. IMPORTANT GPU PASSTHROUGH INSTRUCTIONS: To enable GPU acceleration, you must have the Unraid NVIDIA Driver plugin installed. Under Docker Advanced View, add the following to your Extra Parameters: --gpus all</Overview>
   <Category>MediaApp:Music;MediaServer:Music;</Category>
   <WebUI>http://[IP]:[PORT:7865]</WebUI>
   <Icon>https://raw.githubusercontent.com/bigjoedata/unraid-templates/main/feedback-demucs-server/icon.png</Icon>
-  <Description>
-    A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU.
-  </Description>
+  <Description>A standalone GPU-accelerated companion server for feedBack. Offloads PyTorch/Demucs stem-splitting, Whisper lyrics alignment, and pitch extraction tasks to a separate CUDA-capable GPU.</Description>
   
   <!-- Network Ports -->
   <Config Name="API Port" Target="7865" Default="8020" Mode="tcp" Description="The port for the Demucs Server REST API (defaulted to 8020)" Type="Port" Display="always" Required="true" Mask="false">8020</Config>

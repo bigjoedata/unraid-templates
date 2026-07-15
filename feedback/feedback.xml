@@ -17,7 +17,7 @@
   <Config Name="WebUI Port" Target="8000" Default="7000" Mode="tcp" Description="The port for feedBack Web UI (defaulted to 7000 to avoid browser blocked-port list)" Type="Port" Display="always" Required="true" Mask="false">7000</Config>
 
   <!-- Paths -->
-  <Config Name="Song Library Directory" Target="/feedpaks" Default="/mnt/user/Media/Music/feedBack" Mode="ro" Description="Where your feedPak chart library is stored (Read-only recommended)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/Media/Music/feedBack</Config>
+  <Config Name="Song Library Directory" Target="/feedpaks" Default="/mnt/user/Media/Music/feedBack" Mode="rw" Description="Where your feedPak chart library is stored (Read-Write required for seeding starter/diagnostic content and folder organization)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/Media/Music/feedBack</Config>
   <Config Name="Appdata Directory" Target="/config" Default="/mnt/user/appdata/feedback" Mode="rw" Description="Location for config DB, caches (art, audio, feedpaks), and persistent packages." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/feedback</Config>
 
   <!-- Persistent Plugins Configuration -->
